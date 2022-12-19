@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Catalog" representedClassName="Catalog" syncable="YES">
+        <attribute name="content" attributeType="Transformable" customClassName="UIImage"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="judul_buku" optional="YES" attributeType="String"/>
+        <relationship name="statuspeminjaman" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StatusPeminjaman" inverseName="catalog" inverseEntity="StatusPeminjaman"/>
+    </entity>
+    <entity name="StatusPeminjaman" representedClassName="StatusPeminjaman" syncable="YES">
+        <attribute name="buku_dipinjam" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="is_delete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="tanggal_delete" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="tanggal_peminjaman" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="catalog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Catalog" inverseName="statuspeminjaman" inverseEntity="Catalog"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="statuspeminjaman" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="nama_user" optional="YES" attributeType="String"/>
+        <relationship name="statuspeminjaman" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StatusPeminjaman" inverseName="user" inverseEntity="StatusPeminjaman"/>
+    </entity>
+</model>
